@@ -169,9 +169,11 @@ function getLocation() {
   position.coords = {};
   position.coords.latitude = geoplugin_latitude();
   position.coords.longitude = geoplugin_longitude();
+  //try to use IP location
   if(position.coords.longitude && position.coords.latitude) {
     showPosition(position);
   }
+  //if no IP address, then revert to true geolocation
   else if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
