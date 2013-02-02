@@ -1,16 +1,15 @@
-x = document.getElementById('x');
-temp = document.getElementById('temp');
+status = document.getElementById('status');
 icon = document.getElementById('icon');
 
 function showPosition(position) {
   $.post(
     '/tmprtr',
-    data = {lat: position.coords.latitude, lon: position.coords.longitude },
-    success = function(values, status, jqXHR) {
+    data = { lat: position.coords.latitude, lon: position.coords.longitude },
+    success = function(values, result_status, jqXHR) {
       icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
-      temp.innerHTML = values.condition_string + "<br />";
-      temp.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
-      temp.innerHTML += "<br />" + values.location_string;
+      status.innerHTML = values.condition_string + "<br />";
+      status.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
+      status.innerHTML += "<br />" + values.location_string;
   });
 }
 
@@ -146,16 +145,16 @@ function getIconCharacter(icon) {
 function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      x.innerHTML="User denied the request for Geolocation."
+      status.innerHTML="Sorry, <b>tmprtr</b> needs your location to work."
       break;
     case error.POSITION_UNAVAILABLE:
-      x.innerHTML="Location information is unavailable."
+      status.innerHTML="Location information is unavailable."
       break;
     case error.TIMEOUT:
-      x.innerHTML="The request to get user location timed out."
+      status.innerHTML="The request to get user location timed out."
       break;
     case error.UNKNOWN_ERROR:
-      x.innerHTML="An unknown error occurred."
+      status.innerHTML="An unknown error occurred."
       break;
   }
 }
@@ -165,7 +164,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
   else {
-    x.innerHTML="Geolocation is not supported by this browser.";
+    status.innerHTML="Sorry, your browser is unsupported.";
   }
 }
 
