@@ -62,7 +62,7 @@ function getIconCharacter(icon) {
       return 'R';
     break;
     case 'nt_sleet' :
-      return '';
+      return 'T';
     break;
     case 'nt_snow' :
       return 'X';
