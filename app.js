@@ -65,7 +65,7 @@ getTemperature = function(lat, lon, callback) {
         values.condition_string = current.weather;
         values.location_string = current.display_location.full;
         values.icon = parseImageURL(current.icon_url);
-        
+
         callback(values);
       }
       else {

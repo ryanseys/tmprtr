@@ -6,10 +6,15 @@ function showPosition(position) {
     '/tmprtr',
     data = { lat: position.coords.latitude, lon: position.coords.longitude },
     success = function(values, status, jqXHR) {
-      icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
-      stat_str.innerHTML = values.condition_string + "<br />";
-      stat_str.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
-      stat_str.innerHTML += "<br />" + values.location_string;
+      if(values.icon) {
+        icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
+        stat_str.innerHTML = values.condition_string + "<br />";
+        stat_str.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
+        stat_str.innerHTML += "<br />" + values.location_string;
+      }
+      else {
+        stat_str.innerHTML = "oops, a tmprtr for your location could not be found.<br /><a href='/'>refresh</a>";
+      }
   });
 }
 
