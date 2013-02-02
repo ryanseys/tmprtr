@@ -1,14 +1,29 @@
 x = document.getElementById('x');
 temp = document.getElementById('temp');
+icon = document.getElementById('icon');
 
 function showPosition(position) {
-  //x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
   $.post(
     '/tmprtr', 
     data = {lat: position.coords.latitude, lon: position.coords.longitude },
-    success = function(data, status, jqXHR) {
-      temp.innerHTML = data.temp;
+    success = function(values, status, jqXHR) {
+      icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
+      temp.innerHTML = values.condition_string + "<br />";
+      temp.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
+      temp.innerHTML += "<br />" + values.location_string;
   });
+}
+
+function getIconCharacter(icon) {
+  switch(icon) {
+    case 'nt_partlycloudy':
+      return 'I';
+    break;
+
+    default:
+      return "-";
+    break;
+  }
 }
 
 function showError(error) {

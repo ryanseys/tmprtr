@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  h1= title
+  h1(style="text-align:center;")= title
   div(id="x")
-  div(id='temp')
+  div(id='icon', style="font-size:172pt; text-align:center;", data-icon="-")
+  div(style="font-size:28pt; text-align:center;", id='temp')
   script(src="/js/tmprtr.js")

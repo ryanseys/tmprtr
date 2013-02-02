@@ -8,7 +8,7 @@ exports.index = function(req, res){
 };
 
 exports.tmprtr = function(req, res) {
-  getTemperature(req.body.lat, req.body.lon, function(t) {
-    res.send('index', { temp: t || 'No temperature available.' });
+  getTemperature(req.body.lat, req.body.lon, function(val) {
+    res.send('index', val);
   });
 }

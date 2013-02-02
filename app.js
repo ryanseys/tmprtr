@@ -16,7 +16,7 @@ app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.favicon());
+  app.use(express.favicon('favicon.png'));
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -28,6 +28,16 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+/*
+ Parse the name of the image to get a good idea what icon to use.
+*/
+function parseImageURL(url) {
+  return url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('.'));
+}
+
+/*
+ Getting temperature (and other data actually)
+*/
 getTemperature = function(lat, lon, callback) {
   var options = {
     host: 'api.wunderground.com',
@@ -36,7 +46,6 @@ getTemperature = function(lat, lon, callback) {
 
   http.get(options, function(res) {
     var body = '';
-    console.log("Got response: " + res.statusCode);
 
     res.on("data", function(chunk) {
       body += chunk;
@@ -45,10 +54,22 @@ getTemperature = function(lat, lon, callback) {
     res.on('end', function () {
       body = JSON.parse(body);
       if(body.current_observation) {
-        callback(body.current_observation.temp_c + " degrees C");
+        current = body.current_observation;
+        values = {};
+
+        //populate values
+        values.temp_c = current.temp_c;
+        values.temp_f = current.temp_f;
+        values.feelslike_f = current.feelslike_f;
+        values.feelslike_c = current.feelslike_c;
+        values.condition_string = current.weather;
+        values.location_string = current.display_location.full;
+        values.icon = parseImageURL(current.icon_url);
+        
+        callback(values);
       }
       else {
-        callback(null);
+        callback(null); //an error occurred
       }
     });
 
