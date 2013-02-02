@@ -165,7 +165,14 @@ function showError(error) {
 }
 
 function getLocation() {
-  if (navigator.geolocation) {
+  var position = {};
+  position.coords = {};
+  position.coords.latitude = geoplugin_latitude();
+  position.coords.longitude = geoplugin_longitude();
+  if(position.coords.longitude && position.coords.latitude) {
+    showPosition(position);
+  }
+  else if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
   else {
