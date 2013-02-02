@@ -1,21 +1,32 @@
 stat_str = document.getElementById('stat_str');
 icon = document.getElementById('icon');
+location_str = document.getElementById('location_str');
+condition_str = document.getElementById('condition_str');
+temp_str = document.getElementById('temp_str');
 
 function showPosition(position) {
   $.post(
     '/tmprtr',
     data = { lat: position.coords.latitude, lon: position.coords.longitude },
     success = function(values, status, jqXHR) {
-      if(values.icon) {
-        icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
-        stat_str.innerHTML = values.condition_string + "<br />";
-        stat_str.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
-        stat_str.innerHTML += "<br />" + values.location_string;
-      }
-      else {
-        stat_str.innerHTML = "oops, a tmprtr for your location could not be found.<br /><a href='/'>refresh</a>";
-      }
+      updateDisplay(values);
   });
+}
+
+function updateDisplay(values) {
+  if(values.icon) {
+    icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
+    stat_str.innerHTML = "";
+    condition_str.innerHTML = values.condition_string;
+    temp_str.innerHTML = values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
+    location_str.innerHTML = values.location_string;
+  }
+  else {
+    stat_str.innerHTML = "oops, a tmprtr for your location could not be found.<br /><a href='/'>refresh</a>";
+    condition_str.innerHTML = "";
+    temp_str.innerHTML = "";
+    location_str.innerHTML = "";
+  }
 }
 
 function getIconCharacter(icon) {

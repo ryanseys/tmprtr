@@ -4,5 +4,12 @@ block content
   h1(style="")= title
   div(id='icon', style="line-height:140pt; font-size:200pt; margin-top:20px; padding-top:30px; text-align:center;", data-icon="")
     strong
-      div(class="lead", style="clear:both; margin-top:40px; text-align:center;", id='stat_str') loading...
+      div(class="lead", style="clear:both; margin-top:40px; text-align:center;", id='messages')
+        span(class="lead", style="text-align:center; margin:0; padding:0;", id="stat_str") loading&#46;&#46;&#46;
+        br
+        span(class="lead", style="text-align:center; margin:0; padding:0;", id="condition_str")
+        br
+        span(class="lead", style="text-align:center; margin:0; padding:0;", id="temp_str")
+        br
+        span(class="lead", style="text-align:center; margin:0; padding:0;", id="location_str")
   script(src="/js/tmprtr.js")
