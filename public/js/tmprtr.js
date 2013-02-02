@@ -1,15 +1,15 @@
-status = document.getElementById('status');
+stat_str = document.getElementById('stat_str');
 icon = document.getElementById('icon');
 
 function showPosition(position) {
   $.post(
     '/tmprtr',
     data = { lat: position.coords.latitude, lon: position.coords.longitude },
-    success = function(values, result_status, jqXHR) {
+    success = function(values, status, jqXHR) {
       icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
-      status.innerHTML = values.condition_string + "<br />";
-      status.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
-      status.innerHTML += "<br />" + values.location_string;
+      stat_str.innerHTML = values.condition_string + "<br />";
+      stat_str.innerHTML += values.temp_c + "&deg;C/"+ values.temp_f +"&deg;F";
+      stat_str.innerHTML += "<br />" + values.location_string;
   });
 }
 
@@ -145,16 +145,16 @@ function getIconCharacter(icon) {
 function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      status.innerHTML="Sorry, <b>tmprtr</b> needs your location to work."
+      stat_str.innerHTML="Sorry, <b>tmprtr</b> needs your location to work."
       break;
     case error.POSITION_UNAVAILABLE:
-      status.innerHTML="Location information is unavailable."
+      stat_str.innerHTML="Location information is unavailable."
       break;
     case error.TIMEOUT:
-      status.innerHTML="The request to get user location timed out."
+      stat_str.innerHTML="The request to get user location timed out."
       break;
     case error.UNKNOWN_ERROR:
-      status.innerHTML="An unknown error occurred."
+      stat_str.innerHTML="An unknown error occurred."
       break;
   }
 }
@@ -164,7 +164,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
   else {
-    status.innerHTML="Sorry, your browser is unsupported.";
+    stat_str.innerHTML="Sorry, your browser is unsupported.";
   }
 }
 
