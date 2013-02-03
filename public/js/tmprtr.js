@@ -22,10 +22,7 @@ function updateDisplay(values) {
     location_str.innerHTML = values.location_string;
   }
   else {
-    stat_str.innerHTML = "oops, a tmprtr for your location could not be found.<br /><a href='/'>refresh</a>";
-    condition_str.innerHTML = "";
-    temp_str.innerHTML = "";
-    location_str.innerHTML = "";
+    showStatus("oops, a tmprtr for your location could not be found.<br /><a href='/'>refresh</a>");
   }
 }
 
@@ -175,6 +172,13 @@ function showError(error) {
   }
 }
 
+function showStatus(status) {
+  stat_str.innerHTML = status;
+  condition_str.innerHTML = "";
+  temp_str.innerHTML = "";
+  location_str.innerHTML = "";
+}
+
 function getLocation() {
   var position = {};
   position.coords = {};
@@ -189,7 +193,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
   else {
-    stat_str.innerHTML="Sorry, your browser is unsupported.";
+    showStatus("Sorry, your browser is unsupported.");
   }
 }
 
