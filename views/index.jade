@@ -1,14 +1,21 @@
 extends layout
 
 block content
-  h1(style="")= title
+  //-h1(style="")= title
+  br
+  div(style="text-align:center;")
+    span(class="lead", style="font-size:25pt;", id="location_str")
+    span &nbsp;&nbsp;&nbsp;
+    span(class="lead", style="font-size:20pt; cursor:pointer;", data-icon='&#40;', onclick="requestGeoLocation()")
+  br
   div(id='icon', style="line-height:140pt; font-size:200pt; margin-top:20px; padding-top:30px; text-align:center;", data-icon="")
     strong
       div(class="lead", style="clear:both; margin-top:40px; text-align:center;", id='messages')
         span(class="lead", style="text-align:center; margin:0; padding:0px;", id="stat_str") loading&#46;&#46;&#46;
+        br
         span(class="lead", style="text-align:center; margin:0; padding:0px; font-size:25pt;", id="condition_str")
         br
         span(class="lead", style="text-align:center; margin:0; padding:0px; font-size:25pt;", id="temp_str")
         br
-        span(class="lead", style="text-align:center; margin:0; padding:0px; font-size:25pt;", id="location_str")
+
   script(src="/js/tmprtr.js")

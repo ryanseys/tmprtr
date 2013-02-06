@@ -197,4 +197,8 @@ function getLocation() {
   }
 }
 
+function requestGeoLocation() {
+  navigator.geolocation.getCurrentPosition(showPosition, showError);
+}
+
 getLocation();
