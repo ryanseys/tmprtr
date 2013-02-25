@@ -17,5 +17,9 @@ block content
         br
         span(class="lead", style="text-align:center; margin:0; padding:0px; font-size:25pt;", id="temp_str")
         br
+  script(src="http://www.geoplugin.net/javascript.gp")
+  script
+    $(window).load(function() {
+      $.getScript("/js/tmprtr.js");
+    });
 
-  script(src="/js/tmprtr.js")
