@@ -7,7 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , config = require('./config');
+  , api_key = process.env.API_KEY;
 
 var app = express();
 
@@ -40,7 +40,7 @@ function parseImageURL(url) {
 getTemperature = function(lat, lon, callback) {
   var options = {
     host: 'api.wunderground.com',
-    path: '/api/' + config.api_key + '/conditions/q/' + lat + ',' + lon + '.json'
+    path: '/api/' + api_key + '/conditions/q/' + lat + ',' + lon + '.json'
   };
 
   http.get(options, function(res) {
