@@ -8,6 +8,7 @@ exports.index = function(req, res){
 };
 
 exports.tmprtr = function(req, res) {
+  /* Make the API call to get the temperature */
   getTemperature(req.body.lat, req.body.lon, function(val) {
     if(val) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -18,4 +19,4 @@ exports.tmprtr = function(req, res) {
       res.end();
     }
   });
-}
+};

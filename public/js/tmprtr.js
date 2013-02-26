@@ -18,8 +18,8 @@ function updateDisplay(values) {
     icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
     stat_str.innerHTML = "";
     condition_str.innerHTML = values.condition_string;
-    temp_str.innerHTML = values.temp_c + "&deg;C/" + values.temp_f + "&deg;F <br />" +
-    "feels like " + values.feelslike_c + "&deg;C/" + values.feelslike_f +"&deg;F";
+    temp_str.innerHTML = values.temp_c + "&deg;C/" + values.temp_f + "&deg;F" +
+    "<br />feels like " + values.feelslike_c + "&deg;C/" + values.feelslike_f + "&deg;F";
     location_str.innerHTML = values.location_string;
   }
   else {
