@@ -55,8 +55,6 @@ getTemperature = function(lat, lon, callback) {
       if(body.current_observation) {
         current = body.current_observation;
         values = {};
-
-        //populate values
         values.temp_c = current.temp_c;
         values.temp_f = current.temp_f;
         values.feelslike_f = current.feelslike_f;
