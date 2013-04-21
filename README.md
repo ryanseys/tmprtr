@@ -1,7 +1,7 @@
 [tmprtr](http://tmprtr.herokuapp.com)
 ======
 
-tmprtr is a zero-click weather webapp created on Node.js using the Wunderground weather API.
+A zero-click location-based weather webapp created on Node.js using the Wunderground weather API
 
 Icons are Meteocons.
 
