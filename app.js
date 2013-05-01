@@ -1,13 +1,12 @@
-
 /**
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http')
-  , path = require('path')
-  , api_key = process.env.API_KEY;
+var express = require('express'),
+    routes = require('./routes'),
+    http = require('http'),
+    path = require('path'),
+    api_key = process.env.API_KEY;
 
 var app = express();
 
