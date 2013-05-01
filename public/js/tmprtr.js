@@ -4,6 +4,7 @@ location_str = document.getElementById('location_str');
 condition_str = document.getElementById('condition_str');
 temp_str = document.getElementById('temp_str');
 
+/* Get weather data for a particular position (lat/long) */
 function showPosition(position) {
   $.post(
     '/tmprtr',
@@ -13,13 +14,13 @@ function showPosition(position) {
   });
 }
 
+/* Update the state of the weather */
 function updateDisplay(values) {
   if(values.icon) {
     icon.setAttribute('data-icon', getIconCharacter(values.icon)); //set the icon
     stat_str.innerHTML = "";
     condition_str.innerHTML = values.condition_string;
-    temp_str.innerHTML = values.temp_c + "&deg;C/" + values.temp_f + "&deg;F" +
-    "<br />feels like " + values.feelslike_c + "&deg;C/" + values.feelslike_f + "&deg;F";
+    temp_str.innerHTML = values.feelslike_c + "&deg;C/" + values.feelslike_f + "&deg;F";
     location_str.innerHTML = values.location_string;
   }
   else {
@@ -27,6 +28,7 @@ function updateDisplay(values) {
   }
 }
 
+/* Get the icon to display based on the weather state string */
 function getIconCharacter(icon) {
   switch(icon) {
     case 'nt_chanceflurries' :
@@ -156,23 +158,25 @@ function getIconCharacter(icon) {
   }
 }
 
+/* Display error if location acquisition fails */
 function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      stat_str.innerHTML="Sorry, <b>tmprtr</b> needs your location to work."
+      stat_str.innerHTML = "Sorry, <b>tmprtr</b> needs your location to work.";
       break;
     case error.POSITION_UNAVAILABLE:
-      stat_str.innerHTML="Location information is unavailable."
+      stat_str.innerHTML = "Location information is unavailable.";
       break;
     case error.TIMEOUT:
-      stat_str.innerHTML="The request to get user location timed out."
+      stat_str.innerHTML = "The request to get user location timed out.";
       break;
     case error.UNKNOWN_ERROR:
-      stat_str.innerHTML="An unknown error occurred."
+      stat_str.innerHTML = "An unknown error occurred.";
       break;
   }
 }
 
+/* Display a string in place of the weather as a message */
 function showStatus(status) {
   stat_str.innerHTML = status;
   condition_str.innerHTML = "";
@@ -180,6 +184,10 @@ function showStatus(status) {
   location_str.innerHTML = "";
 }
 
+/*
+Ask the browser for the latitude and longitude
+First tries IP-based location, then geo-location (requires elevated permissions)
+*/
 function getLocation() {
   var position = {};
   position.coords = {};
@@ -191,13 +199,17 @@ function getLocation() {
   }
   //if no IP address, then revert to true geolocation
   else if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    requestGeoLocation();
   }
   else {
     showStatus("Sorry, your browser is unsupported.");
   }
 }
 
+/*
+Gets latitude and longitude from browser geo-location
+Assumes your browser has navigator.geolocation
+*/
 function requestGeoLocation() {
   navigator.geolocation.getCurrentPosition(showPosition, showError);
 }
