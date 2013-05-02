@@ -214,4 +214,11 @@ function requestGeoLocation() {
   navigator.geolocation.getCurrentPosition(showPosition, showError);
 }
 
-getLocation();
+function refresh() {
+  getLocation();
+  setTimeout(function() {
+    refresh();
+  }, 60000); // 60000 ms -> 1 minute
+}
+
+refresh();
