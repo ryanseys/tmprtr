@@ -189,16 +189,7 @@ Ask the browser for the latitude and longitude
 First tries IP-based location, then geo-location (requires elevated permissions)
 */
 function getLocation() {
-  var position = {};
-  position.coords = {};
-  position.coords.latitude = geoplugin_latitude();
-  position.coords.longitude = geoplugin_longitude();
-  //try to use IP location
-  if(position.coords.longitude && position.coords.latitude) {
-    showPosition(position);
-  }
-  //if no IP address, then revert to true geolocation
-  else if (navigator.geolocation) {
+  if (navigator.geolocation) {
     requestGeoLocation();
   }
   else {
