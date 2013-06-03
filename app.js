@@ -6,7 +6,7 @@ var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    api_key = process.env.API_KEY;
+    api_key = process.env.WUNDERGROUND_API_KEY;
 
 var app = express();
 
