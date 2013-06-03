@@ -77,6 +77,6 @@ getTemperature = function(lat, lon, callback) {
 app.get('/', routes.index);
 app.post('/tmprtr', routes.tmprtr);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+http.createServer(app).listen(process.env['PORT'] || 3000, function(){
+  console.log("Express server listening on port " + process.env['PORT'] || 3000);
 });

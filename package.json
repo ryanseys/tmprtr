@@ -9,8 +9,11 @@
     "express": "3.0.5",
     "jade": "*"
   },
-  "engines" : {
-    "node" : "0.8.14",
-    "npm" : "1.1.65"
+  "engines": {
+    "node": "0.8.14",
+    "npm": "1.1.65"
+  },
+  "devDependencies": {
+    "awsbox": "0.4.5"
   }
 }
