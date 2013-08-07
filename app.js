@@ -6,7 +6,9 @@ var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    api_key = process.env.WUNDERGROUND_API_KEY;
+    api_key = process.env.WUNDERGROUND_API_KEY || "nope";
+
+console.log("Running with API key: " + api_key);
 
 var app = express();
 
