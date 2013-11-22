@@ -1,14 +1,18 @@
 extends layout
 
 block content
-  h1(style="")= title
+  a(href='/', class='title')
+    h1= title
   br
   div(style="text-align:center;")
-    span(class="lead", style="font-size:25pt;", id="location_str") get location
+    span(class="lead", style="font-size:25pt;", id="location_str") Please allow geolocation access...
     span &nbsp;&nbsp;&nbsp;
     span(class="lead", style="font-size:20pt; cursor:pointer;", data-icon='(', onclick="requestGeoLocation()")
   br
+  div(class='loading')
+    img(src='/img/loading.gif')
   div(id='icon', style="line-height:140pt; font-size:200pt; margin-top:20px; padding-top:30px; text-align:center;", data-icon="")
+    div(class='sadface') :(
     strong
       div(class="lead", style="clear:both; margin-top:40px; text-align:center;", id='messages')
         span(class="lead", style="text-align:center; margin:0; padding:0px;", id="stat_str")

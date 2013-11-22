@@ -6,3 +6,27 @@ body {
   font-family: 'MeteoconsRegular';
   content: attr(data-icon);
 }
+
+.title {
+  text-decoration: none;
+  color: rgb(51, 51, 51);
+}
+
+.title:hover {
+  color: rgb(51, 51, 51);
+}
+
+.getting {
+  display:none;
+}
+
+.loading {
+  display:none;
+  text-align: center;
+}
+
+.sadface {
+  display:none;
+  text-align: center;
+  font-size: 120pt;
+}

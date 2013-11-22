@@ -76,5 +76,5 @@ app.get('/', routes.index);
 app.post('/tmprtr', routes.tmprtr);
 
 http.createServer(app).listen(process.env['PORT'] || 3000, function(){
-  console.log("Express server listening on port " + process.env['PORT'] || 3000);
+  console.log("Listening on port " + process.env['PORT'] || 3000);
 });
