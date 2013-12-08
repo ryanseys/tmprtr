@@ -1,14 +1,16 @@
-[tmprtr](http://tmprtr.herokuapp.com)
+[tmprtr](http://tmprtr.ryanseys.com)
 ======
+
+Demo at [http://tmprtr.ryanseys.com](http://tmprtr.ryanseys.com)
 
 A zero-click location-based weather webapp created on Node.js using the Wunderground weather API
 
-Icons are Meteocons.
+Thanks from [Meteocons](http://www.alessioatzeni.com/meteocons/) for the weather icons!
 
 ### Run locally ###
 
-`$ sudo API_KEY=XXX node app.js`
+```bash
+export WUNDERGROUND_API_KEY=XXX && npm start
+```
 
 Please substitute XXX for your own Wunderground API key
-
-Deployed on Heroku at [http://tmprtr.herokuapp.com](http://tmprtr.herokuapp.com)
