@@ -1,4 +1,4 @@
-[tmprtr](http://tmprtr.ryanseys.com)
+tmprtr
 ======
 
 Demo at [http://tmprtr.ryanseys.com](http://tmprtr.ryanseys.com)
