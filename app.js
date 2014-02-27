@@ -2,9 +2,9 @@ var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    api_key = process.env.WUNDERGROUND_API_KEY || "nope";
+    api_key = process.env.WUNDERGROUND_API_KEY || 'nope';
 
-console.log("Running with API key: " + api_key);
+console.log('Running with API key: ' + api_key);
 
 var app = express();
 
@@ -43,7 +43,7 @@ getTemperature = function(lat, lon, callback) {
   http.get(options, function(res) {
     var body = '';
 
-    res.on("data", function(chunk) {
+    res.on('data', function(chunk) {
       body += chunk;
     });
 
@@ -76,5 +76,5 @@ app.get('/', routes.index);
 app.post('/tmprtr', routes.tmprtr);
 
 http.createServer(app).listen(process.env['PORT'] || 3000, function(){
-  console.log("Listening on port " + process.env['PORT'] || 3000);
+  console.log('Listening on port ' + process.env['PORT'] || 3000);
 });
