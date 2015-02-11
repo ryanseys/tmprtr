@@ -1,8 +1,6 @@
 tmprtr
 ======
 
-Demo at [http://tmprtr.ryanseys.com](http://tmprtr.ryanseys.com)
-
 A zero-click location-based weather webapp created on Node.js using the Wunderground weather API
 
 Thanks from [Meteocons](http://www.alessioatzeni.com/meteocons/) for the weather icons!
