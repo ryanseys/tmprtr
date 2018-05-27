@@ -51,7 +51,7 @@ getTemperature = function(lat, lon, callback) {
       body = JSON.parse(body);
       if(body.current_observation) {
         current = body.current_observation;
-        values = {};
+        const values = {};
         values.temp_c = current.temp_c;
         values.temp_f = current.temp_f;
         values.feelslike_f = current.feelslike_f;
